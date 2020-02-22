@@ -1,0 +1,129 @@
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+    <hr>
+    <!-- Three columns of text below the carousel -->
+    <h3 class="text-center"> Ordenen</h3>
+
+    <hr>
+    <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+            <ng-container *ngIf="order == 'empy'; else cartTemplate">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h3 id="message">actualmente no tiene no tiene ordenes de compras</h3>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #cartTemplate>
+                <div *ngFor="let item of items; let i = index" class="col-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
+                            <img class="size-image" src="{{item.product.images[0].url}}" alt="">
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-8">
+                            <a [routerLink]="['/public/product/', item.product_id]"
+                                routerLinkActive="router-link-active">
+                                <h4>{{item.product.name}}</h4>
+                            </a>
+                            <ng-container *ngFor="let size of item.product.sizes">
+                                <div *ngIf="size.id == item.size_id">
+                                    <div>Talla seleccionada: {{size.size}}</div>
+                                </div>
+                            </ng-container>
+                            <div>Precio por Unidad: {{item.product.price}} Bsf</div>
+                            <div>Cantidad selecionada: {{item.quantity}}</div>
+
+
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4">
+                            <p>Total :{{item.product.price*item.quantity}} Bsf</p>
+                        </div>
+
+                    </div>
+                    <hr class="featurette-divider">
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+            <div class="product-sidebar">
+                <div class="product-sidebar-widget">
+                    <h4 class="mb-0">Estas listo para Realizar tu Compra?</h4>
+                </div>
+                <div class="product-sidebar-widget">
+                    <p>Al realizar el pago su envio se estaralizando lo mas pronto posible </p>
+                    <div>Total a Pagar: {{total}} Bsf</div>
+                    <br>
+                    <ng-container *ngIf="items.length > 0; else elseTemplate">
+                        <button type="button" (click)="LoadOder()" name="" id="" class="btn  pink-button">Realizar
+                            pago</button>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+
+                    </ng-template>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <hr class="featurette-divider">
+    <h3 class="text-center"> Metodos de pago</h3>
+    <hr class="featurette-divider">
+    <ngb-tabset [justify]="fill">
+        <ngb-tab title="Pago Movil">
+            <ng-template ngbTabContent>
+                <br>
+                <h4 class="text-center">datos para realizar el pogo movil</h4>
+                <br>
+                <div>Telefono: <b>0426-834-58-06</b></div>
+                <div>Cedula:<b>V 26.350.710</b></div>
+                <div>Banco: <b>Prvincial</b></div>
+                <div>Monto ha cancelar: <b>{{order.total}}Bsf</b></div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+            <ng-template ngbTabTitle>Transferencia Bancaria</ng-template>
+            <ng-template ngbTabContent><br>
+                <h4 class="text-center">datos para realizar la transferencia</h4>
+                <br>
+                <div>Persona: <b>Virginia Valentina Pedrique Aponte</b></div>
+                <div>Cedula:<b>V 26.350.710</b></div>
+                <div>Banco: <b>Prvincial</b></div>
+                <div>Numero de Cuenta: <b>01080050190100275654</b></div>
+                <div>Monto ha cancelar: <b>{{order.total}}Bsf</b></div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Pronto airtm">
+            <ng-template ngbTabContent>
+                <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+                    facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget
+                    tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et
+                    molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent
+                    fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut
+                    bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes,
+                    nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec
+                    tortor vel tellus pulvinar feugiat.</p>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+    <hr class="featurette-divider">
+    <h3 class="text-center"> Ofertas</h3>
+    <hr class="featurette-divider">
+    <div class=" row">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let ofert of oferts">
+            <app-cards [product]="ofert" (reloadCart)="getCart()"></app-cards>
+        </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- /END THE FEATURETTES -->
+
+    <app-footer></app-footer>

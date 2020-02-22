@@ -1,0 +1,159 @@
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+<div class="dashboard-wrapper">
+    <div class="dashboard-influence">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">Galeria del Producto {{product.name}}</h3>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce
+                            sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Influencer Dashboard
+                                        Template</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- content  -->
+            <!-- ============================================================== -->
+            <div class="section-block">
+                <h3 class="section-title">Imagenes</h3>
+                <button type="button" class="btn btn-primary mr-1" (click)="open(create,'create','')">Registrar una
+                    Imagen</button>
+                <button type="button" class="btn btn-success " [routerLink]="['/admin/products/list']"
+                    routerLinkActive="router-link-active">Volver</button>
+            </div>
+            <div class="row">
+                <!-- grid column -->
+                <div *ngFor="let image of product.images" class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <!-- .card -->
+                    <div class="card card-figure">
+                        <!-- .card-figure -->
+                        <figure class="figure">
+                            <!-- .figure-img -->
+                            <div class="figure-img">
+                                <img class="img-fluid" src="{{image.url}}" alt="Card image cap">
+                                <!-- <div class="figure-description">
+                                    <h6 class="figure-title"> Long title text can be place here </h6>
+                                    <p class="text-muted mb-0">
+                                        <small>Laboriosam neque officia adipisci quo ut placeat labore? Doloribus,
+                                            ipsam? Voluptates, minus.</small>
+                                    </p>
+                                </div>-->
+                                <div class="figure-tools">
+                                    <a href="#" class="tile tile-circle tile-sm mr-auto"> </a>
+                                    <span class=" btn btn-danger badge badge-danger" (click)="deleteImage(image)"><i
+                                            class="fas fa-trash"></i></span>
+                                </div>
+                                <div class="figure-action">
+                                    <a class="btn btn-block btn-sm btn-primary"
+                                        (click)="open(update,'update',image)">Editar</a>
+                                </div>
+                            </div>
+                            <!-- /.figure-img -->
+                        </figure>
+                        <!-- /.card-figure -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /grid column -->
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- widgets   -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- end recommended campaigns   -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- end content  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <app-footeradmin></app-footeradmin>
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- end wrapper  -->
+
+<!-- ============================================================== -->
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+
+
+<!-- ============================================================== -->
+<!-- Modals  -->
+<!-- ============================================================== -->
+<ng-template #create let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Subir Imagens</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formCreateImage">
+            <div class="form-group">
+                <label for="">Imagen</label>
+                <input type="file" formControlName="image" (change)="onUploadImage($event,'create')"
+                    accept=".png, .jpg, .jpeg, .pdf" multiple />
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="formCreateImage.invalid" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Remplazar Imagen</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formUpdateImage">
+
+            <div class="form-group">
+                <label for="">Imagen</label>
+                <input type="file" formControlName="image" (change)="onUploadImage($event,'update')"
+                    accept=".png, .jpg, .jpeg, .pdf" />
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="formUpdateImage.invalid" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Remplazar</button>
+    </div>
+</ng-template>
+
+
+<!-- ============================================================== -->
+<!-- end Modals -->
+<!-- ============================================================== -->

@@ -1,0 +1,162 @@
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+
+
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+
+<div class="container-fluid dashboard-content ">
+    <!-- ============================================================== -->
+    <!-- pageheader  -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Concept - Bootstrap 4 Admin Dashboard Template </h2>
+                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel
+                    mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">E-coommerce</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Concept - Bootstrap 4
+                                Admin Dashboard Template</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader  -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let product of products">
+                    <app-cards [product]="product"></app-cards>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+            <div class="product-sidebar">
+                <div class="product-sidebar-widget">
+                    <h4 class="mb-0">E-Commerce Filter</h4>
+                </div>
+                <div class="product-sidebar-widget">
+                    <h4 class="product-sidebar-widget-title">Categorias</h4>
+                    <div *ngFor="let category of categories" class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" (click)="selectCategory(category.id)"
+                            id="cat-{{category.id}}">
+                        <label class="custom-control-label" for="cat-{{category.id}}">{{category.category}}</label>
+                    </div>
+                </div>
+                <div class="product-sidebar-widget">
+                    <h4 class="product-sidebar-widget-title">Tallas</h4>
+                    <div *ngFor="let size of sizes" class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="size-{{size.id}}"
+                            (click)="selectSize(size.id)">
+                        <label class="custom-control-label" for="size-{{size.id}}">{{size.size}}</label>
+                    </div>
+                </div>
+                <div class="product-sidebar-widget">
+                    <h4 class="product-sidebar-widget-title">Brand</h4>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="brand-1">
+                        <label class="custom-control-label" for="brand-1">Brand Name #1</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="brand-2">
+                        <label class="custom-control-label" for="brand-2">Brand Name #2</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="brand-3">
+                        <label class="custom-control-label" for="brand-3">Brand Name #3</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="brand-4">
+                        <label class="custom-control-label" for="brand-4">Brand Name #4</label>
+                    </div>
+                </div>
+                <div class="product-sidebar-widget">
+                    <h4 class="product-sidebar-widget-title">Color</h4>
+                    <div class="custom-control custom-radio custom-color-blue ">
+                        <input type="radio" id="color-1" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="color-1">Blue</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-color-red ">
+                        <input type="radio" id="color-2" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="color-2">Red</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-color-yellow ">
+                        <input type="radio" id="color-3" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="color-3">Yellow</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-color-black ">
+                        <input type="radio" id="color-4" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="color-4">Black</label>
+                    </div>
+                </div>
+                <div class="product-sidebar-widget">
+                    <h4 class="product-sidebar-widget-title">Price</h4>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">$$</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">$$$</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">$$$$</label>
+                    </div>
+                </div>
+                <div class="product-sidebar-widget">
+                    <a href="#" class="btn btn-outline-light">Reset Filter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<div class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                Copyright © 2018 Concept. All rights reserved. Dashboard by <a
+                    href="https://colorlib.com/wp/">Colorlib</a>.
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="text-md-right footer-links d-none d-sm-block">
+                    <a href="javascript: void(0);">About</a>
+                    <a href="javascript: void(0);">Support</a>
+                    <a href="javascript: void(0);">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- end footer -->
+<!-- ============================================================== -->
+
+
+<!-- ============================================================== -->
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+
+
+
+
+<app-footer></app-footer>

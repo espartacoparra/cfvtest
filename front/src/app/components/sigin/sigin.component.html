@@ -1,0 +1,59 @@
+<div class="contentSigin">
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center"><a href="../index.html"><img class="logo-img"
+                        src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter
+                    your user information.</span></div>
+            <div class="card-body">
+                <form [formGroup]="formCreateUser">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" formControlName="email" type="email"
+                            placeholder="Correo" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" formControlName="name" type="text"
+                            placeholder="Nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" formControlName="lastname" type="text"
+                            placeholder="Apellido" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" formControlName="cedula" type="number"
+                            placeholder="Cedula" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" formControlName="password" type="password"
+                            placeholder="Contraseña">
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox"><span
+                                class="custom-control-label">Remember
+                                Me</span>
+                        </label>
+                    </div>-->
+                    <button [disabled]="formCreateUser.invalid" class="btn btn-primary btn-lg btn-block"
+                        (click)="createUser()">Sign in</button>
+                </form>
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="row">
+                    <div class="col-xs-1-12">
+                        <div class="card-footer-item card-footer-item-bordered">
+                            <a [routerLink]="['/']" routerLinkActive="router-link-active" class="footer-link">Iniciar
+                                Sesión</a></div>
+                    </div>
+                    <div class="col-xs-1-12">
+                        <div class="card-footer-item card-footer-item-bordered">
+                            <a href="#" class="footer-link">Forgot Password</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

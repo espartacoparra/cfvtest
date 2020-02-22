@@ -1,0 +1,38 @@
+<div class="product-thumbnail">
+    <div class="product-img-head">
+        <div class="product-img">
+            <img id="img-size" src="{{product.images[0].url}}" alt="" class="img-fluid">
+        </div>
+        <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a>
+        </div>
+    </div>
+    <div class="product-content">
+        <div class="product-content-head">
+            <div class="product-rating d-inline-block">
+                <i class="fa fa-fw fa-star"></i>
+                <i class="fa fa-fw fa-star"></i>
+                <i class="fa fa-fw fa-star"></i>
+                <i class="fa fa-fw fa-star"></i>
+                <i class="fa fa-fw fa-star"></i>
+                <h3 class="product-title">{{product.name}}</h3>
+            </div>
+
+            <br>
+            <span>
+                <div *ngFor="let size of product.sizes" class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadio{{product.id}}{{size.id}}" (click)="sizeSelected=size.id"
+                        name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio{{product.id}}{{size.id}}">{{size.size}}</label>
+                </div>
+            </span>
+
+            <div class="product-price">{{product.price}} Bsf</div>
+        </div>
+        <div class="product-btn">
+            <button (click)="addToCart()" [disabled]="sizeSelected==''" class="btn btn-primary">Add to Cart</button>
+            <a [routerLink]="['/public/product', product.id]" routerLinkActive="router-link-active"
+                class="btn btn-outline-light">Details</a>
+            <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+        </div>
+    </div>
+</div>

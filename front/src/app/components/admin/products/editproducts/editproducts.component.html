@@ -1,0 +1,141 @@
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+<div class="dashboard-wrapper">
+    <div class="dashboard-influence">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">Registro de Productos </h3>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce
+                            sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- content  -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <form [formGroup]="formUpdateProduct">
+
+
+                            <h5 class="card-header">Basic Form</h5>
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Nombre</label>
+                                    <input id="name" formControlName="name" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Precio</label>
+                                    <input id="price" formControlName="price" type="number" placeholder=""
+                                        class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Descripcion</label>
+                                    <textarea class="form-control" formControlName="description"
+                                        id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categories">Categorias</label>
+                                    <label>categorias actuales: </label>
+                                    <span *ngFor="let category of categories">
+                                        <span *ngFor="let catp of formUpdateProduct.value.categories">
+                                            <button class="btn btn-info mr-1"
+                                                *ngIf="catp == category.id ">{{category.category}}</button>
+                                        </span>
+                                    </span>
+                                    <select class="form-control" formControlName="categories" id="categories" multiple>
+                                        <option value="" disabled>seleccione Opcion</option>
+                                        <option *ngFor="let category of categories" value="{{category.id}}">
+                                            {{category.category}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="card-body border-top">
+                                <h3>Tallas</h3>
+                                <label>Tallas actuales: </label>
+
+
+                                <span *ngFor="let size of sizes">
+                                    <span *ngFor="let sizp of formUpdateProduct.value.size">
+                                        <button class="btn btn-info mr-1"
+                                            *ngIf="sizp == size.id ">{{size.size}}</button>
+                                    </span>
+                                </span>
+
+                                <div class="form-group">
+                                    <label for="size">Tallas</label>
+                                    <select class="form-control" id="size" multiple>
+                                        <option *ngFor="let size of sizes" value="{{size.id}}" (click)="addItem(size)">
+                                            {{size.size}}</option>
+                                    </select>
+                                </div>
+
+                                <h3>Cantidades por Tallas</h3>
+                                <div formArrayName="size"
+                                    *ngFor="let size of formUpdateProduct.get('size').value; let i = index;">
+                                    <div [formGroupName]="i">
+                                        <div class="form-group">
+                                            <label for=""
+                                                class="col-form-label">{{formUpdateProduct.get('size').value[i].name}}</label>
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-11">
+                                                            <input  formControlName="quantity"
+                                                                type="number" class="form-control" placeholder="" />
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <span (click)="removeItem(i)"
+                                                                class="btn btn-danger">x</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" [disabled]="formUpdateProduct.invalid"
+                                    class="btn btn-outline-dark" (click)="updateProduct()">Save</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- end content  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <app-footeradmin></app-footeradmin>
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- end wrapper  -->
+
+
+
+
+<!-- ============================================================== -->
+<!-- end Modals -->
+<!-- ============================================================== -->

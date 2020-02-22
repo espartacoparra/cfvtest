@@ -1,0 +1,406 @@
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+<div class="dashboard-wrapper">
+    <div class="dashboard-influence">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h3 class="mb-2">Lista de Productos </h3>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce
+                            sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Influencer Dashboard
+                                        Template</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- content  -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- widgets   -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- four widgets   -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- total views   -->
+                <!-- ============================================================== -->
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-inline-block">
+                                <h5 class="text-muted">Total Views</h5>
+                                <h2 class="mb-0"> 10,28,056</h2>
+                            </div>
+                            <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                                <i class="fa fa-eye fa-fw fa-sm text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end total views   -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- total followers   -->
+                <!-- ============================================================== -->
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-inline-block">
+                                <h5 class="text-muted">Total Followers</h5>
+                                <h2 class="mb-0"> 24,763</h2>
+                            </div>
+                            <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                                <i class="fa fa-user fa-fw fa-sm text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end total followers   -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- partnerships   -->
+                <!-- ============================================================== -->
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-inline-block">
+                                <h5 class="text-muted">Partnerships</h5>
+                                <h2 class="mb-0">14</h2>
+                            </div>
+                            <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
+                                <i class="fa fa-handshake fa-fw fa-sm text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end partnerships   -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- total earned   -->
+                <!-- ============================================================== -->
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-inline-block">
+                                <h5 class="text-muted">Total Earned</h5>
+                                <h2 class="mb-0"> $149.00</h2>
+                            </div>
+                            <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end total earned   -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end widgets   -->
+            <!-- ============================================================== -->
+
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- campaign activities   -->
+                <!-- ============================================================== -->
+                <div class="col-lg-12">
+                    <div class="section-block">
+                        <h3 class="section-title">Productos</h3>
+                        <button type="button" class="btn btn-primary" [routerLink]="['/admin/product/register']"
+                            routerLinkActive="router-link-active">Registrar
+                            un
+                            Producto</button>
+                    </div>
+                    <div class="card">
+                        <div class="campaign-table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="border-0">
+                                        <th class="border-0">Id</th>
+                                        <th class="border-0">Image</th>
+                                        <th class="border-0">Nombre</th>
+                                        <th class="border-0">Categoria</th>
+                                        <th class="border-0">Precio</th>
+                                        <th class="border-0">Cantidad</th>
+                                        <th class="border-0">Operaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let product of products">
+                                        <td>{{product.id}}</td>
+                                        <td>
+                                            <div class="m-r-10">
+                                                <a href="{{product.images[0].url}}" target="_blank">
+                                                    <img src="{{product.images[0].url}}" alt="user" width="35">
+                                                </a></div>
+                                        </td>
+                                        <td>{{product.name}}</td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="let category of  product.categories">
+                                                    {{category.category}}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{product.price}}</td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="let size of product.sizes">
+                                                    {{size.size}}: {{size.products_sizes.quantity}}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <button type="button" name="" id="" class="btn btn-success mr-1"
+                                                [routerLink]="['/admin/product/edit', product.id]"
+                                                routerLinkActive="router-link-active">Editar</button>
+                                            <button type="button" name="" id="" class="btn btn-info mr-1"
+                                                [routerLink]="['/admin/images',product.id]"
+                                                routerLinkActive="router-link-active">Editar Galeria</button>
+                                            <button type="button" name="" id="" class="btn btn-danger"
+                                                (click)="deleteProduct(product)">Eliminar</button>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end campaign activities   -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- recommended campaigns   -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-block">
+                        <h3 class="section-title">Recommended Campaigns</h3>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            <div class="campaign-img"><img src="assets/images/dribbble.png" alt="user"
+                                    class="user-avatar-xl"></div>
+                            <div class="campaign-info">
+                                <h3 class="mb-1">Campaigns Name</h3>
+                                <p class="mb-3">Vestibulum porttitor laoreet faucibus.</p>
+                                <p class="mb-1">Min, Views:<span class="text-dark font-medium ml-2">2,50,000</span>
+                                </p>
+                                <p>Payout: <span class="text-dark font-medium ml-2">$22</span></p>
+                                <a href="#"><i class="fab fa-twitter-square fa-sm twitter-color"></i> </a><a href="#"><i
+                                        class="fab fa-snapchat-square fa-sm snapchat-color"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            <div class="campaign-img"><img src="assets/images/github.png" alt="user"
+                                    class=" user-avatar-xl"></div>
+                            <div class="campaign-info">
+                                <h3 class="mb-1">Campaigns Name</h3>
+                                <p class="mb-3">Lorem ipsum dolor sit ament</p>
+                                <p class="mb-1">Min, Views:<span class="text-dark font-medium ml-2">1,00,000</span>
+                                </p>
+                                <p>Payout: <span class="text-dark font-medium ml-2">$28</span></p>
+                                <a href="#"><i class="fab fa-instagram fa-sm instagram-color"></i> </a><a href="#"><i
+                                        class="fab fa-facebook-square fa-sm facebook-color"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            <div class="campaign-img"><img src="assets/images/slack.png" alt="user"
+                                    class="user-avatar-xl"></div>
+                            <div class="campaign-info">
+                                <h3 class="mb-1">Campaigns Name</h3>
+                                <p class="mb-3">Maecenas mattis tempor libero pretium.</p>
+                                <p class="mb-1">Min, Views:<span class="text-dark font-medium ml-2">3,80,000</span>
+                                </p>
+                                <p>Payout: <span class="text-dark font-medium ml-2">$36</span></p>
+                                <a href="#"><i class="fab fa-facebook-square fa-sm facebook-color"></i> </a><a
+                                    href="#"><i class="fab fa-snapchat-square fa-sm snapchat-color"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card campaign-card text-center">
+                        <div class="card-body">
+                            <div class="campaign-img"><img src="assets/images/mail_chimp.png" alt="user"
+                                    class="user-avatar-xl"></div>
+                            <div class="campaign-info">
+                                <h3 class="mb-1">Campaigns Name</h3>
+                                <p class="mb-3">Proin vitae lacinia leo</p>
+                                <p class="mb-1">Min, Views:<span class="text-dark font-medium ml-2">4,50,000</span>
+                                </p>
+                                <p>Payout: <span class="text-dark font-medium ml-2">$57</span></p>
+                                <a href="#"><i class="fab fa-twitter-square fa-sm twitter-color"></i> </a><a href="#"><i
+                                        class="fab fa-snapchat-square fa-sm snapchat-color"></i></a>
+                                <a href="#"><i class="fab fa-facebook-square fa-sm facebook-color"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end recommended campaigns   -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- end content  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <app-footeradmin></app-footeradmin>
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- end wrapper  -->
+
+<!-- ============================================================== -->
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+
+
+<!-- ============================================================== -->
+<!-- Modals  -->
+<!-- ============================================================== -->
+<ng-template #create let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formCreateProduct">
+            <div class="form-group">
+                <label for="">Imagen</label>
+                <input type="file" formControlName="image" (change)="onUploadImage($event)"
+                    accept=".png, .jpg, .jpeg, .pdf" multiple />
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" name="" formControlName="name" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="">Precio</label>
+                <input type="number" name="" formControlName="price" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="">Cantidad</label>
+                <input type="text" name="" formControlName="quantity" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for=""></label>
+                <select class="form-control" formControlName="categories" name="" id="" multiple>
+                    <option></option>
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.category}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="formCreateProduct.invalid" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formUpdateProduct">
+
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" name="" formControlName="name" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="">Precio</label>
+                <input type="number" name="" formControlName="price" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="">Cantidad</label>
+                <input type="text" name="" formControlName="quantity" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="" Categorias></label>
+                <label>categorias actuales: </label>
+                <span *ngFor="let category of categories">
+                    <span *ngFor="let catp of formUpdateProduct.value.categories">
+                        <button class="btn btn-info mr-1" *ngIf="catp == category.id ">{{category.category}}</button>
+                    </span>
+                </span>
+
+
+                <select class="form-control mt-1" formControlName="categories"
+                    value="formUpdateProduct.value.categories" name="" id="" multiple size="2">
+                    <option value="" disabled>seleccione Opcion</option>
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.category}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="formUpdateProduct.invalid" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+
+<!-- ============================================================== -->
+<!-- end Modals -->
+<!-- ============================================================== -->

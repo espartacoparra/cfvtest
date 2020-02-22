@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+.dashboard-wrapper {
+  background-color: #efeff6;
+}
+.margintop {
+  margin-top: 90px;
+}
+
+/*buttons*/
+.pink-button {
+  background-color: #e7b6b2 !important;
+}
+.pink-button:hover {
+  background-color: #e7b6b2;
+  opacity: 0.5;
+  color: black;
+}
+/*buttons*/
+
+/*icons size*/
+.icon-med {
+  font-size: 19px;
+}
+/*icons size*/
