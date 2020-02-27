@@ -2,6 +2,11 @@
 back hecho en node js, express y sequelize
 front angular 8
 
+prueba de funcionamento inicial funcionalidades limitadas host(heroku) db server https://www.db4free.net/
+https://valentina-cfv.herokuapp.com/
+email:espartacoxxpro@gmail.com
+password:123456
+
 angular
 1) cd front/
 2) npm i
