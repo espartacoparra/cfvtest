@@ -113,10 +113,10 @@ class CartController {
       const deleteItem = await Models.Item.destroy({ where: { order_id: data[0].order_id } });
       var prices = await getPrices(data);
       var total = 0;
-      for (let index = 0; index < data.length; index++) {
-        total += prices[index].price * data[index].quantity;
-        data[index].price = prices[index].price;
-      }
+      data.map((data, index) => {
+        total += prices[index].price * data.quantity;
+        data.price = prices[index].price;
+      });
       updateSizes(data);
       const Item = await Models.Item.bulkCreate(data);
       const Order = await Models.Order.update({ status: "order", total: total }, { where: { id: data[0].order_id } });
@@ -147,13 +147,16 @@ async function getPrices(data) {
 }
 
 async function updateSizes(data) {
-  for (let index = 0; index < data.length; index++) {
-    var Size = await Models.Products_Size.findOne({ where: { product_id: data[index].product.id, size_id: data[index].size_id } });
+
+  data.map(async (data, index) => {
+    var Size = await Models.Products_Size.findOne({ where: { product_id: data.product.id, size_id: data.size_id } });
     console.log(Size.quantity);
-    var quantity = Size.quantity - data[index].quantity;
-    Size = { product_id: data[index].product.id, size_id: data[index].size_id, quantity: quantity };
-    var sizeUpdate = await Models.Products_Size.update(Size, { where: { product_id: data[index].product.id, size_id: data[index].size_id } });
+    var quantity = Size.quantity - data.quantity;
+    Size = { product_id: data.product.id, size_id: data.size_id, quantity: quantity };
+    var sizeUpdate = await Models.Products_Size.update(Size, { where: { product_id: data.product.id, size_id: data.size_id } });
     console.log(sizeUpdate);
-  }
+  });
+
+
 }
 module.exports = new CartController();
