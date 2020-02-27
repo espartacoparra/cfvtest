@@ -1,3 +1,20 @@
-aplicacion cfv 
+# aplicacion cfv 
 back hecho en node js, express y sequelize
 front angular 8
+
+angular
+1) cd front/
+2) npm i
+3) ng serve
+
+mysql
+Iniciar su mysql
+
+express
+1) cd express/
+2) npm i
+3) cd src/
+4) configurar su archivo para pder migrar su db cfvtest/back/src/config/config.json
+5) npx sequelize-cli db:migrate
+6) cd ..
+7) npm run dev
