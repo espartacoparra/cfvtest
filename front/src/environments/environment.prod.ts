@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  urlFront:'https://valentina-cfv.herokuapp.com/',
-  urlFrontImages:'https://valentina-cfv.herokuapp.com/assets/',
-  urlBack:'https://valentina-cfv.herokuapp.com/'
+  urlFront: 'https://cfv-tets.herokuapp.com/',
+  urlFrontImages: 'https://cfv-tets.herokuapp.com/assets/',
+  urlBack: 'https://cfv-tets.herokuapp.com/'
 };

@@ -3,10 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  /*production: false,
+  urlFront: 'https://cfv-tets.herokuapp.com/',
+  urlFrontImages: 'https://cfv-tets.herokuapp.com/assets/',
+  urlBack: 'https://cfv-tets.herokuapp.com/'*/
   production: false,
-  urlFront:'http://localhost:4200/',
-  urlFrontImages:'http://localhost:4200/assets/',
-  urlBack:'http://localhost:3000/'
+  urlFront: 'http://localhost:4200/',
+  urlFrontImages: 'http://localhost:4200/assets/',
+  urlBack: 'http://localhost:3000/'
 };
 
 /*

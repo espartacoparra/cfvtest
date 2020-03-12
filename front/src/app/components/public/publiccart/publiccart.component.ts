@@ -66,6 +66,8 @@ export class PubliccartComponent implements OnInit {
       if (data == 'ok') {
         this.toasts.showSuccess('Operación exitosa', 'su orden ha sido creada');
         this.router.navigate(['/public/order']);
+      } if (data == '03') {
+        this.toasts.showError('Información', 'actualmente tiene un pedido en proceso');
       } else {
         this.toasts.showError('Error', 'Lo sentimos podemos prcesar su orden');
       }

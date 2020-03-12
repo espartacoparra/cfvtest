@@ -1,1 +1,6 @@
 problema al eliminar los productos de carrito*
+
+
+admin
+
+al agregar cantidad de tallas problemas con los inputs

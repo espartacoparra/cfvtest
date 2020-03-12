@@ -199,6 +199,16 @@ export class RequestService {
       headers: this.generateHeaders()
     });
   }
+  payOrder(data): Observable<any> {
+    return this.http.post<any>(this.urlback + "order/pay", data, {
+      headers: this.generateHeaders()
+    });
+  }
+  deleteOrder(data): Observable<any> {
+    return this.http.post<any>(this.urlback + "order/delete", data, {
+      headers: this.generateHeaders()
+    });
+  }
 
   //ordee operations end
 

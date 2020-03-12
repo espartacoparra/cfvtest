@@ -74,6 +74,8 @@ router.post("/cart/add", OrderController.create);
 router.post("/cart/delete", OrderController.delete);
 router.get("/order", OrderController.getOrder);
 router.post("/order/load", OrderController.loadOrder);
+router.post("/order/pay", OrderController.payOrder);
+router.post("/order/delete", OrderController.deleteOrder);
 //Orders operations end
 //methods front End--------------------------------------
 module.exports = router;

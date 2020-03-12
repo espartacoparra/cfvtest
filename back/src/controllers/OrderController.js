@@ -1,5 +1,7 @@
 const Models = require("../models/models");
 const Sequelize = require("sequelize");
+const ProductController = require("../controllers/ProductController");
+
 const Op = Sequelize.Op;
 class CartController {
   async index(req, res) { }
@@ -108,8 +110,18 @@ class CartController {
   }
 
   async loadOrder(req, res) {
+    var user = req.headers;
     var data = req.body;
     try {
+      console.log('************************************************************');
+      var Ord = await Models.Order.findOne({
+        where: { user_id: user.user_id, status: 'order' }
+      });
+      console.log(Ord);
+      if (Ord != null) {
+        console.log(Ord);
+        return res.json('03');
+      }
       const deleteItem = await Models.Item.destroy({ where: { order_id: data[0].order_id } });
       var prices = await getPrices(data);
       var total = 0;
@@ -126,7 +138,37 @@ class CartController {
     }
   }
 
+  async payOrder(req, res) {
+    var user = req.headers;
+    var data = req.body;
+    try {
+      var img = await ProductController.createImage(data);
+      console.log(img);
+      const updateOrder = await Models.Order.update({ status: "pay", img: img[0].url }, { where: { id: data.order_id } });
+      res.json(updateOrder);
+    } catch (error) {
 
+    }
+
+  }
+
+  async deleteOrder(req, res) {
+    var user = req.headers;
+    var data = req.body;
+    try {
+      const Order = await Models.Order.findOne({ where: { user_id: user.user_id, status: 'order' }, include: [{ model: Models.Item, include: { model: Models.Product, include: [{ model: Models.Image }, { model: Models.Size }] } }] });
+      var items = Order.items.map(async (item) => {
+        parseInt()
+        var ord = await Models.Products_Size.findOne({ where: { product_id: item.product_id, size_id: item.size_id } });
+        var update = await Models.Products_Size.update({ quantity: parseInt(ord.quantity) + parseInt(item.quantity) }, { where: { product_id: item.product_id, size_id: item.size_id } });
+      });
+      const updateOrder = await Models.Order.update({ status: "cancel", }, { where: { id: data.id } });
+      return res.json(updateOrder);
+    } catch (error) {
+      return res.json('error');
+    }
+
+  }
 
   async getSize(req, res) {
     const Size = await Models.Size.findAll();
