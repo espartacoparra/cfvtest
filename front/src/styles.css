@@ -22,3 +22,31 @@
   font-size: 19px;
 }
 /*icons size*/
+
+
+/*front*/
+.container {
+  margin-top: 75px;
+}
+.size-image {
+  width: 130px;
+}
+.img-min {
+  width: 100px;
+}
+
+#message{
+ 
+}
+
+#img-miniatura{
+  height: 50px;
+  width: 100px;
+  margin-left: 20%;
+
+}
+
+.body{
+  margin-left: 2%;
+  margin-right: 2%;
+}

@@ -5,13 +5,15 @@
 <div class="container marketing">
     <hr>
     <!-- Three columns of text below the carousel -->
-    <h3 class="text-center"> Ordene</h3>
+    <h3 class="text-center"> Ordenen de Compra</h3>
 
     <hr>
     <div class="row">
         <ng-container *ngIf="val == 'empy'; else cartTemplate">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <h3 id="message" class="text-center">actualmente no tiene no tiene ordenes de compras</h3>
+                <h4 id="message" class="text-center"><a [routerLink]="[ '/public/categories' ]">Exprota nuestros
+                        productos</a></h4>
             </div>
         </ng-container>
 
@@ -62,12 +64,52 @@
             <ngb-tab title="Pago Movil">
                 <ng-template ngbTabContent>
                     <br>
-                    <h4 class="text-center">datos para realizar el pogo movil</h4>
-                    <br>
-                    <div>Telefono: <b>0426-834-58-06</b></div>
-                    <div>Cedula:<b>V 26.350.710</b></div>
-                    <div>Banco: <b>Prvincial</b></div>
-                    <div>Monto ha cancelar: <b>{{total}}Bs</b></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="text-center">datos para realizar el pogo movil</h4>
+                            <br>
+                            <div>Telefono: <b>0426-834-58-06</b></div>
+                            <div>Cedula:<b>V 26.350.710</b></div>
+                            <div>Banco: <b>Prvincial</b></div>
+                            <div>Monto ha cancelar: <b>{{total}}Bs</b></div>
+                        </div>
+                        <div class="col-4">
+                            <form [formGroup]="formCreatePay">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Nombre de quien transfiere</label>
+                                        <input type="text" formControlName="name" class="form-control" id="inputEmail4"
+                                            placeholder="Nombre">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Numero de referencia</label>
+                                        <input type="number" formControlName="ref" class="form-control"
+                                            id="inputPassword4" placeholder="Numero de referencia">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Dirrección de Envio</label>
+                                    <input type="text" formControlName="address" class="form-control" id="inputAddress"
+                                        placeholder="Oficina Domesa o tealca">
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" (change)='onUploadImage($event)' formControlName="image"
+                                        accept=".png, .jpg, .jpeg, .pdf" class="custom-file-input"
+                                        id="validatedCustomFile" required>
+                                    <label class="custom-file-label" for="validatedCustomFile">{{imgName}}</label>
+                                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+
+                                    </div>
+                                </div>
+                                <button type="submit" [disabled]="formCreatePay.invalid" class="btn btn-primary"
+                                    (click)="payOrder()">Confirmar Pago</button>
+                            </form>
+                        </div>
+                    </div>
+
                 </ng-template>
             </ngb-tab>
             <ngb-tab>

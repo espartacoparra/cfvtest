@@ -70,6 +70,7 @@ router.get("/categories/all", CategoryController.getAllCategories);
 
 //Orders operations
 router.get("/cart", OrderController.getCart);
+router.get("/operations", OrderController.getOperations);
 router.post("/cart/add", OrderController.create);
 router.post("/cart/delete", OrderController.delete);
 router.get("/order", OrderController.getOrder);

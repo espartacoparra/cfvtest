@@ -13,12 +13,12 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class PublicorderComponent implements OnInit {
   formCreatePay: FormGroup;
-  val = "ok"
-  order = { id: '' };
+  val = "empy"
+  order = { id: '', total: 0, items: [] };
   items: [] = [];
   selects: any[] = [];
   quantity = "";
-  total = "";
+  total = 0;
   oferts: any[];
   fill = "fill";
   base64textString: any[];
@@ -49,11 +49,25 @@ export class PublicorderComponent implements OnInit {
       if (data == 'empy') {
         this.val = 'empy';
       } else {
+        this.val = 'ok';
         this.order = data;
-        this.total = data.total;
+        this.total = this.getTotal(data);
         this.items = data.items;
       }
     });
+  }
+
+  getTotal(data) {
+    var total = 0;
+    this.order.items.map((item: any) => {
+      item.price = item.product.price;
+      total += item.product.price * item.quantity;
+      return item;
+    });
+    console.log(this.order);
+    this.order.total = total;
+    return total;
+
   }
 
   getOferts() {
@@ -66,7 +80,9 @@ export class PublicorderComponent implements OnInit {
   deleteOrder() {
     this.request.deleteOrder(this.order).subscribe(data => {
       console.log(data);
+      this.val = 'empy';
       this.getOrder();
+      this.getOferts();
     });
   }
   open(content) {
@@ -87,11 +103,14 @@ export class PublicorderComponent implements OnInit {
   }
 
   payOrder() {
-
     this.formCreatePay.value.order_id = this.order.id;
     console.log(this.formCreatePay.value);
     this.request.payOrder(this.formCreatePay.value).subscribe(data => {
       console.log(data);
+      this.getOrder();
+      this.getOferts();
+      this.createBuildForm();
+      this.imgName = "";
     });
   }
 }

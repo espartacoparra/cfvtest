@@ -26,10 +26,8 @@ class CartController {
   async getOrder(req, res) {
     var user = req.headers;
     try {
-      const Val = await Models.Order.findOne({
-        where: { user_id: user.user_id, status: 'order' },
-        include: [{ model: Models.Item, include: { model: Models.Product, include: [{ model: Models.Image }, { model: Models.Size }] } }]
-      });
+
+      var Val = await getorder(user);
       if (Val == null) {
         res.json('empy');
       } else {
@@ -38,6 +36,16 @@ class CartController {
 
     } catch (error) { }
 
+  }
+
+  async getOperations(req, res) {
+    var user = req.headers;
+    try {
+      const Orders = await Models.Order.findAll({ where: { user_id: user.user_id, [Op.or]: [{ status: 'cancel' }, { status: 'verification' }, { status: 'pay' }, { status: 'verificated' }, { status: 'sent' }] }, include: [{ model: Models.Item, include: { model: Models.Product, include: [{ model: Models.Image }, { model: Models.Size }] } }] });
+      res.json(Orders);
+    } catch (error) {
+      res.json('error');
+    }
   }
 
   async create(req, res) {
@@ -112,7 +120,15 @@ class CartController {
   async loadOrder(req, res) {
     var user = req.headers;
     var data = req.body;
+    //return res.json(data);
+
     try {
+      data.map(async (item) => {
+        var sizeValidate = await Models.Products_Size.findOne({ where: { size_id: item.size_id, product_id: item.product_id } });
+        if (sizeValidate.quantity <= 0) {
+          return res.json('04');
+        }
+      });
       console.log('************************************************************');
       var Ord = await Models.Order.findOne({
         where: { user_id: user.user_id, status: 'order' }
@@ -144,7 +160,7 @@ class CartController {
     try {
       var img = await ProductController.createImage(data);
       console.log(img);
-      const updateOrder = await Models.Order.update({ status: "pay", img: img[0].url }, { where: { id: data.order_id } });
+      const updateOrder = await Models.Order.update({ status: "verification", img: img[0].url }, { where: { id: data.order_id } });
       res.json(updateOrder);
     } catch (error) {
 
@@ -158,12 +174,11 @@ class CartController {
     try {
       const Order = await Models.Order.findOne({ where: { user_id: user.user_id, status: 'order' }, include: [{ model: Models.Item, include: { model: Models.Product, include: [{ model: Models.Image }, { model: Models.Size }] } }] });
       var items = Order.items.map(async (item) => {
-        parseInt()
         var ord = await Models.Products_Size.findOne({ where: { product_id: item.product_id, size_id: item.size_id } });
         var update = await Models.Products_Size.update({ quantity: parseInt(ord.quantity) + parseInt(item.quantity) }, { where: { product_id: item.product_id, size_id: item.size_id } });
       });
-      const updateOrder = await Models.Order.update({ status: "cancel", }, { where: { id: data.id } });
-      return res.json(updateOrder);
+      const destroyOrder = await Models.Order.destroy({ where: { id: data.id } });
+      return res.json(destroyOrder);
     } catch (error) {
       return res.json('error');
     }
@@ -198,7 +213,15 @@ async function updateSizes(data) {
     var sizeUpdate = await Models.Products_Size.update(Size, { where: { product_id: data.product.id, size_id: data.size_id } });
     console.log(sizeUpdate);
   });
-
-
 }
+
+async function getorder(user) {
+  var Val = await Models.Order.findOne({
+    where: { user_id: user.user_id, status: 'order' },
+    include: [{ model: Models.Item, include: { model: Models.Product, include: [{ model: Models.Image }, { model: Models.Size }] } }]
+  });
+  return Val;
+}
+
+
 module.exports = new CartController();

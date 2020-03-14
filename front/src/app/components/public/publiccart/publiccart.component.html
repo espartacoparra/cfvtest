@@ -37,20 +37,27 @@
                             </ng-container>
                             <div>Precio por Unidad:{{item.product.price}} Bsf</div>
                             <ng-container *ngFor="let size of item.product.sizes">
-                                <div class="form-row align-items-center" *ngIf="size.id == item.size_id">
-                                    <div class="col-auto my-1">
-                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                        <select [(ngModel)]="item.quantity" (change)="updateTotal()"
-                                            class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                            <option *ngFor="let count of selects[i];let ind = index" value="{{count}}">
-                                                cant:
-                                                {{count}}
-                                            </option>
+                                <ng-container *ngIf="size.id == item.size_id ; else elseTemplateQuantity">
+                                    <ng-container *ngIf="size.products_sizes.quantity > 0;else elseTemplateQuantity">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-auto my-1">
+                                                <div class="form-group">
+                                                    <label for="quantity">Cantidad</label>
+                                                    <input type="number" class="form-control"
+                                                        [(ngModel)]="item.quantity" (ngModelChange)="updateTotal()"
+                                                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-template #elseTemplateQuantity>
+                                        <span class="text-danger">Lo sentimos mucho ya no tenemos existencia de este
+                                            producto</span>
+                                    </ng-template>
+                                </ng-container>
 
-                                        </select>
-                                    </div>
 
-                                </div>
+
                             </ng-container>
 
                         </div>
@@ -93,15 +100,16 @@
 
         </div>
     </div>
-    <hr class="featurette-divider">
-    <h3 class="text-center"> Ofertas</h3>
-    <hr class="featurette-divider">
-    <div class=" row">
-        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let ofert of oferts">
-            <app-cards [product]="ofert" (reloadCart)="getCart()"></app-cards>
-        </div>
+</div><!-- /.container -->
+<hr class="featurette-divider">
+<h3 class="text-center"> Ofertas</h3>
+<hr class="featurette-divider">
+<div class=" row">
+    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let ofert of oferts">
+        <app-cards [product]="ofert" (reloadCart)="getCart()"></app-cards>
+    </div>
 
-    </div><!-- /.container -->
+
 
 
     <!-- /END THE FEATURETTES -->

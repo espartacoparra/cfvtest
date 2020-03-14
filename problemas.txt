@@ -1,6 +1,10 @@
-problema al eliminar los productos de carrito*
+problema al eliminar los productos de carrito//////////////
 
 
 admin
 
-al agregar cantidad de tallas problemas con los inputs
+al agregar cantidad de tallas problemas con los inputs*
+
+
+
+validar la carga de el carrito en el servidor *

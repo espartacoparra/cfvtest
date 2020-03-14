@@ -1,0 +1,64 @@
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+    <hr>
+    <!-- Three columns of text below the carousel -->
+    <h3 class="text-center"> Pedidos </h3>
+    <hr>
+
+
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Productos</th>
+                <th scope="col">Ref</th>
+                <th scope="col">Archivo de Tranferencia</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let order of Orders">
+
+                <tr>
+                    <th scope="row">{{ order.id }}</th>
+                    <td>
+                        <ul>
+                            <li *ngFor="let item of order.items">
+                                {{item.product.name}}: {{item.quantity}} <a
+                                    [routerLink]="[ '/public/product/',item.product_id ]">Ver</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>215416</td>
+                    <td><a href="{{order.img}}" target="_blank"><img id="img-miniatura" src="{{order.img}}" alt=""></a>
+                    </td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.createdAt | date:'medium'}}</td>
+                    <td>{{order.total | number  }} Bs</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
+
+
+
+
+</div><!-- /.container -->

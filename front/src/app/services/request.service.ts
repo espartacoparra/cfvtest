@@ -210,7 +210,12 @@ export class RequestService {
     });
   }
 
-  //ordee operations end
+  getOperations(): Observable<any> {
+    return this.http.get<any>(this.urlback + "operations", {
+      headers: this.generateHeaders()
+    });
+  }
+  //order operations end
 
   //end front methods///////////////////////////////
 }

@@ -42,6 +42,7 @@ import { EditproductsComponent } from './components/admin/products/editproducts/
 import { PubliccartComponent } from './components/public/publiccart/publiccart.component';
 import { ProductComponent } from "./components/public/product/product.component";
 import { PublicorderComponent } from './components/public/publicorder/publicorder.component';
+import { PublicoperationComponent } from './components/public/publicoperation/publicoperation.component';
 
 
 
@@ -70,7 +71,10 @@ import { PublicorderComponent } from './components/public/publicorder/publicorde
     EditproductsComponent,
     PubliccartComponent,
     ProductComponent,
-    PublicorderComponent
+    PublicorderComponent,
+    PublicoperationComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -81,7 +85,7 @@ import { PublicorderComponent } from './components/public/publicorder/publicorde
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [RequestService, ImageService],

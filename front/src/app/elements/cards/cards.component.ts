@@ -23,12 +23,19 @@ export class CardsComponent implements OnInit {
     console.log(product);
     this.request.addToCart(product).subscribe(data => {
       console.log(data);
-      if (data == "01") {
-        this.toasts.showSuccess('Agregado al Carrito', 'Su producto ha sido agregado al su carrito ');
-      } else if (data == "02") {
-        this.toasts.showSuccess('Operación exitosa', 'El producto ya se encuentra en su carrito');
-      } else {
-        this.toasts.showError('Error', 'Lo sentimos su producto no pudo ser agregado al carrito');
+      switch (data) {
+        case '01':
+          this.toasts.showSuccess('Agregado al Carrito', 'Su producto ha sido agregado al su carrito ');
+          break;
+        case '02':
+          this.toasts.showSuccess('Operación exitosa', 'El producto ya se encuentra en su carrito');
+          break;
+        case '03':
+          this.toasts.showError('Información', 'ya no nos queda stock del producto');
+          break;
+        default:
+          this.toasts.showError('Error', 'Lo sentimos su producto no pudo ser agregado al carrito');
+          break;
       }
       this.reloadCart.emit();
     });

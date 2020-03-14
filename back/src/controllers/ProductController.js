@@ -61,7 +61,8 @@ class ProductController {
           quantity: data.quantity
         };
       });
-      var images = await this.createImage(data);
+      var images = createImage(data);
+      console.log(images);
       const result = Promise.all([
         Models.Categories_Products.bulkCreate(cat),
         Models.Products_Size.bulkCreate(sizes),
@@ -241,6 +242,28 @@ class ProductController {
 }
 
 //funciones no enrrutadas
-
+function createImage(data) {
+  var images = data.image.map(image => {
+    var date = new Date();
+    var name =
+      date +
+      Math.random()
+        .toString(36)
+        .substring(7) +
+      ".png";
+    var target_path = imgPath + name;
+    var buff = Buffer.from(image, "base64");
+    fs.writeFile(target_path, buff, err => {
+      if (err) return 'errr';
+      console.log("The binary data has been decoded and saved to my-file.png");
+    });
+    return {
+      product_id: data.product_id,
+      name: name,
+      url: enviroment.images_path + name
+    };
+  });
+  return images;
+}
 
 module.exports = new ProductController();

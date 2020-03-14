@@ -19,11 +19,15 @@
 
             <br>
             <span>
-                <div *ngFor="let size of product.sizes" class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadio{{product.id}}{{size.id}}" (click)="sizeSelected=size.id"
-                        name="customRadio" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio{{product.id}}{{size.id}}">{{size.size}}</label>
-                </div>
+                <ng-container *ngFor="let size of product.sizes">
+                    <div class="custom-control custom-radio custom-control-inline"
+                        *ngIf="size.products_sizes.quantity >0">
+                        <input type="radio" id="customRadio{{product.id}}{{size.id}}" (click)="sizeSelected=size.id"
+                            name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label"
+                            for="customRadio{{product.id}}{{size.id}}">{{size.size}}</label>
+                    </div>
+                </ng-container>
             </span>
 
             <div class="product-price">{{product.price}} Bs</div>

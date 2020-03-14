@@ -16,6 +16,7 @@ import { RegisterproductsComponent } from "./components/admin/products/registerp
 import { EditproductsComponent } from "./components/admin/products/editproducts/editproducts.component";
 import { PubliccartComponent } from "./components/public/publiccart/publiccart.component";
 import { PublicorderComponent } from './components/public/publicorder/publicorder.component';
+import { PublicoperationComponent } from './components/public/publicoperation/publicoperation.component';
 
 //guards
 import { LoginGuard } from "./guards/login.guard";
@@ -83,6 +84,11 @@ const routes: Routes = [
         path: "order",
         component: PublicorderComponent
       },
+      {
+        path: "operations",
+        component: PublicoperationComponent
+      },
+
       {
         path: "images/:product",
         component: ImagesComponent
